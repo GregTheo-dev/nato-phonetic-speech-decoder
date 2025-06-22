@@ -125,7 +125,7 @@ class _SpeechCounterState extends State<SpeechCounter> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent,
-        title: Text("Nato-phonetic speech decoder"),
+        title: const Text("Nato-phonetic speech decoder"),
       ),
       body: DecoratedBox(
         decoration: BoxDecoration(
