@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'natoPhoneticAlphabet.dart';
+import 'nato_phonetic_alphabet.dart';
 import 'package:flutter/foundation.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
