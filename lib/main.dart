@@ -74,8 +74,8 @@ class _SpeechCounterState extends State<SpeechCounter> {
   }
 
   void _onSpeechResult(SpeechRecognitionResult result) {
+    translatedWord = "";
     setState(() {
-      translatedWord = "";
       _text = result.recognizedWords;
       if(kDebugMode) {
         print(_text);
