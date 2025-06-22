@@ -72,17 +72,16 @@ class _SpeechCounterState extends State<SpeechCounter> {
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
       _text = result.recognizedWords;
-      String totalResult = "";
       if(kDebugMode) {
         print(_text);
       }
       List<String> words = _text.split(" "); // Split the string into words
       for(String word in words){
-        String? translatedWord = invertedNatoPhoneticAlphabet[word];
-        if(translatedWord == null) {
+        String? res = invertedNatoPhoneticAlphabet[word];
+        if(res == null) {
           continue;
         }
-        totalResult = totalResult + translatedWord;
+        translatedWord = translatedWord + res;
       }
     });
   }
