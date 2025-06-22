@@ -50,6 +50,9 @@ class _SpeechCounterState extends State<SpeechCounter> {
 
   Future<PermissionStatus> _getPermission() async {
     final PermissionStatus permission = await Permission.microphone.status;
+    if (await Permission.microphone.isPermanentlyDenied) {
+      openAppSettings();
+    }
     if (permission != PermissionStatus.granted &&
         permission != PermissionStatus.denied) {
       final Map<Permission, PermissionStatus> permissionStatus =
@@ -63,7 +66,8 @@ class _SpeechCounterState extends State<SpeechCounter> {
 
   void _startListening() async {
     await _speechToText.listen(
-        onResult: _onSpeechResult
+        listenFor: const Duration(hours: 1),
+        onResult: _onSpeechResult,
     );
     setState(() {
     });
@@ -71,6 +75,7 @@ class _SpeechCounterState extends State<SpeechCounter> {
 
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
+      translatedWord = "";
       _text = result.recognizedWords;
       if(kDebugMode) {
         print(_text);
@@ -137,7 +142,7 @@ class _SpeechCounterState extends State<SpeechCounter> {
               children: <Widget>[
                 Text(
                   translatedWord,
-                  style:  const TextStyle(fontWeight: FontWeight.bold,),
+                  style:  const TextStyle(fontWeight: FontWeight.bold, fontSize: 30,),
                 ),
               ],
             ),
